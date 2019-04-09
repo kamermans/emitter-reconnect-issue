@@ -1,0 +1,7 @@
+[[constraint]]
+  branch = "master"
+  name = "github.com/emitter-io/go"
+
+[[override]]
+  branch = "master"
+  name = "github.com/eclipse/paho.mqtt.golang"

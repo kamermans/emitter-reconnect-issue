@@ -1,0 +1,23 @@
+emitter-test-server:
+    build: server/
+    container_name: emitter-test-server
+    ports:
+        - 1080:8080
+    environment:
+        EMITTER_LICENSE: MQ0ODmMeCOhyr_euJL2jyx9fAulRKsgOAAAAAAAAAAI
+
+# Secret: p_l5S1EDyPPLb0b4_HftwGBHOSu4Wd1m
+
+emitter-test-sender:
+    build: client/
+    container_name: emitter-test-sender
+    links:
+        - emitter-test-server:emitter-test-server
+    command: /go/bin/emitter-test send
+
+emitter-test-receiver:
+    build: client/
+    container_name: emitter-test-receiver
+    links:
+        - emitter-test-server:emitter-test-server
+    command: /go/bin/emitter-test receive
